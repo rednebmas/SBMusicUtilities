@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		22FB65831CA4C07600185053 /* SBMusicUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB65821CA4C07600185053 /* SBMusicUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		808D33CC18E5E3A1E9CB9AAD /* libPods-SBMusicUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BD9BAA100FB8156EF5BD2 /* libPods-SBMusicUtilities.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12F7B7D51174FEC03EE88CCA /* Pods-SBMusicUtilities.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBMusicUtilities.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBMusicUtilities/Pods-SBMusicUtilities.debug.xcconfig"; sourceTree = "<group>"; };
 		22FB657F1CA4C07600185053 /* SBMusicUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBMusicUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FB65821CA4C07600185053 /* SBMusicUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBMusicUtilities.h; sourceTree = "<group>"; };
 		22FB65841CA4C07600185053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C5BD9BAA100FB8156EF5BD2 /* libPods-SBMusicUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SBMusicUtilities.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B54F2DAFDDE2673C567D08CD /* Pods-SBMusicUtilities.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBMusicUtilities.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBMusicUtilities/Pods-SBMusicUtilities.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808D33CC18E5E3A1E9CB9AAD /* libPods-SBMusicUtilities.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +37,8 @@
 			children = (
 				22FB65811CA4C07600185053 /* SBMusicUtilities */,
 				22FB65801CA4C07600185053 /* Products */,
+				2DFA1373619929DFA3046476 /* Pods */,
+				308FC6F7F9BD1656CA6379F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +59,23 @@
 			path = SBMusicUtilities;
 			sourceTree = "<group>";
 		};
+		2DFA1373619929DFA3046476 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				12F7B7D51174FEC03EE88CCA /* Pods-SBMusicUtilities.debug.xcconfig */,
+				B54F2DAFDDE2673C567D08CD /* Pods-SBMusicUtilities.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		308FC6F7F9BD1656CA6379F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C5BD9BAA100FB8156EF5BD2 /* libPods-SBMusicUtilities.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -70,10 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22FB65871CA4C07600185053 /* Build configuration list for PBXNativeTarget "SBMusicUtilities" */;
 			buildPhases = (
+				7AF4A166C19E406C0835586F /* Check Pods Manifest.lock */,
 				22FB657A1CA4C07600185053 /* Sources */,
 				22FB657B1CA4C07600185053 /* Frameworks */,
 				22FB657C1CA4C07600185053 /* Headers */,
 				22FB657D1CA4C07600185053 /* Resources */,
+				99D96D50315D0FC9BCDA0FDA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,6 +150,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7AF4A166C19E406C0835586F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99D96D50315D0FC9BCDA0FDA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SBMusicUtilities/Pods-SBMusicUtilities-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22FB657A1CA4C07600185053 /* Sources */ = {
@@ -226,6 +285,7 @@
 		};
 		22FB65881CA4C07600185053 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12F7B7D51174FEC03EE88CCA /* Pods-SBMusicUtilities.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -242,6 +302,7 @@
 		};
 		22FB65891CA4C07600185053 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B54F2DAFDDE2673C567D08CD /* Pods-SBMusicUtilities.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -275,6 +336,7 @@
 				22FB65891CA4C07600185053 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
