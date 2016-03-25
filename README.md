@@ -18,5 +18,9 @@ Lots of math/music stuff.
 #### SBPlayableNote
 Used by SBAudioPlayer.
 
+## SBRandomNoteGenerator
+
+Generates random notes within a specified range.
+
 ## SBAudioPlayer
 Play a sinewave, or instrument samples, from a SBNote instance.

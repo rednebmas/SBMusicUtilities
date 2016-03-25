@@ -16,4 +16,9 @@ FOUNDATION_EXPORT const unsigned char SBMusicUtilitiesVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SBMusicUtilities/PublicHeader.h>
 
+#import <SBMusicUtilities/SBAudioPlayer.h>
+#import <SBMusicUtilities/SBNote.h>
+#import <SBMusicUtilities/SBPlayableNote.h>
+#import <SBMusicUtilities/SBRandomNoteGenerator.h>
+
 

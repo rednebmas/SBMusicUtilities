@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22059F4B1CA50A690016E205 /* SBRandomNoteGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */; };
+		22059F4C1CA50A690016E205 /* SBRandomNoteGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */; };
 		22FB65831CA4C07600185053 /* SBMusicUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB65821CA4C07600185053 /* SBMusicUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22FB658D1CA4FD0F00185053 /* SBAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB658B1CA4FD0F00185053 /* SBAudioPlayer.h */; };
 		22FB658E1CA4FD0F00185053 /* SBAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB658C1CA4FD0F00185053 /* SBAudioPlayer.m */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		12F7B7D51174FEC03EE88CCA /* Pods-SBMusicUtilities.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBMusicUtilities.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBMusicUtilities/Pods-SBMusicUtilities.debug.xcconfig"; sourceTree = "<group>"; };
+		22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBRandomNoteGenerator.h; sourceTree = "<group>"; };
+		22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBRandomNoteGenerator.m; sourceTree = "<group>"; };
 		22FB657F1CA4C07600185053 /* SBMusicUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBMusicUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FB65821CA4C07600185053 /* SBMusicUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBMusicUtilities.h; sourceTree = "<group>"; };
 		22FB65841CA4C07600185053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				22FB65941CA4FD6900185053 /* SBNote.m */,
 				22FB658F1CA4FD2100185053 /* SBPlayableNote.h */,
 				22FB65901CA4FD2100185053 /* SBPlayableNote.m */,
+				22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */,
+				22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */,
 				22FB65841CA4C07600185053 /* Info.plist */,
 			);
 			path = SBMusicUtilities;
@@ -101,6 +107,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22059F4B1CA50A690016E205 /* SBRandomNoteGenerator.h in Headers */,
 				22FB658D1CA4FD0F00185053 /* SBAudioPlayer.h in Headers */,
 				22FB65951CA4FD6900185053 /* SBNote.h in Headers */,
 				22FB65831CA4C07600185053 /* SBMusicUtilities.h in Headers */,
@@ -212,6 +219,7 @@
 			files = (
 				22FB65921CA4FD2100185053 /* SBPlayableNote.m in Sources */,
 				22FB658E1CA4FD0F00185053 /* SBAudioPlayer.m in Sources */,
+				22059F4C1CA50A690016E205 /* SBRandomNoteGenerator.m in Sources */,
 				22FB65961CA4FD6900185053 /* SBNote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
