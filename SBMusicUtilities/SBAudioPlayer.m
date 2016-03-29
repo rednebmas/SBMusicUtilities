@@ -127,12 +127,10 @@
         return;
     }
     
-    
     SBPlayableNote *note = self.notes[0];
-    if (note.instrumentType != InstrumentTypeSineWave)
+    if (note.instrumentType == InstrumentTypePiano)
     {
-        // was causing undetermined crashes on Pitch
-        // [sharedOutput setInputFormat:note.audioFile.clientFormat];
+        [sharedOutput setInputFormat:note.audioFile.clientFormat];
     }
     [sharedOutput setDataSource:self];
     [sharedOutput startPlayback];
