@@ -19,7 +19,7 @@
 @property (nonatomic) BOOL tempBufferListAllocated;
 @property (nonatomic) AudioBufferList *tempAudioBufferList;
 // consists of SBPlayableNotes
-@property (nonatomic, retain) NSMutableArray *notes;
+@property (readwrite, nonatomic, retain) NSMutableArray *notes;
 @property (nonatomic, retain) NSMutableArray *persistentDiscardNotes;
 
 @end
@@ -131,7 +131,8 @@
     SBPlayableNote *note = self.notes[0];
     if (note.instrumentType != InstrumentTypeSineWave)
     {
-        [sharedOutput setInputFormat:note.audioFile.clientFormat];
+        // was causing undetermined crashes on Pitch
+        // [sharedOutput setInputFormat:note.audioFile.clientFormat];
     }
     [sharedOutput setDataSource:self];
     [sharedOutput startPlayback];

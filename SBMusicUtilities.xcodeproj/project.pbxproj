@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22059F4B1CA50A690016E205 /* SBRandomNoteGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */; };
+		22059F4B1CA50A690016E205 /* SBRandomNoteGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22059F4C1CA50A690016E205 /* SBRandomNoteGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */; };
+		22444DB81CAAFB38002AFA3F /* SBPitchEstimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 22444DB61CAAFB38002AFA3F /* SBPitchEstimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22444DB91CAAFB38002AFA3F /* SBPitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 22444DB71CAAFB38002AFA3F /* SBPitchEstimator.m */; };
+		22444DBC1CAAFBCC002AFA3F /* SBMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 22444DBA1CAAFBCC002AFA3F /* SBMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22444DBD1CAAFBCC002AFA3F /* SBMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 22444DBB1CAAFBCC002AFA3F /* SBMath.m */; };
+		22444DC01CAAFC13002AFA3F /* SBCircularFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 22444DBE1CAAFC13002AFA3F /* SBCircularFloat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22444DC11CAAFC13002AFA3F /* SBCircularFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 22444DBF1CAAFC13002AFA3F /* SBCircularFloat.m */; };
+		22444DC41CAAFC32002AFA3F /* SBCircular.h in Headers */ = {isa = PBXBuildFile; fileRef = 22444DC21CAAFC32002AFA3F /* SBCircular.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22444DC51CAAFC32002AFA3F /* SBCircular.m in Sources */ = {isa = PBXBuildFile; fileRef = 22444DC31CAAFC32002AFA3F /* SBCircular.m */; };
 		22FB65831CA4C07600185053 /* SBMusicUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB65821CA4C07600185053 /* SBMusicUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		22FB658D1CA4FD0F00185053 /* SBAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB658B1CA4FD0F00185053 /* SBAudioPlayer.h */; };
+		22FB658D1CA4FD0F00185053 /* SBAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB658B1CA4FD0F00185053 /* SBAudioPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22FB658E1CA4FD0F00185053 /* SBAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB658C1CA4FD0F00185053 /* SBAudioPlayer.m */; };
-		22FB65911CA4FD2100185053 /* SBPlayableNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB658F1CA4FD2100185053 /* SBPlayableNote.h */; };
+		22FB65911CA4FD2100185053 /* SBPlayableNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB658F1CA4FD2100185053 /* SBPlayableNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22FB65921CA4FD2100185053 /* SBPlayableNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB65901CA4FD2100185053 /* SBPlayableNote.m */; };
-		22FB65951CA4FD6900185053 /* SBNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB65931CA4FD6900185053 /* SBNote.h */; };
+		22FB65951CA4FD6900185053 /* SBNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 22FB65931CA4FD6900185053 /* SBNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22FB65961CA4FD6900185053 /* SBNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB65941CA4FD6900185053 /* SBNote.m */; };
 		808D33CC18E5E3A1E9CB9AAD /* libPods-SBMusicUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BD9BAA100FB8156EF5BD2 /* libPods-SBMusicUtilities.a */; };
 /* End PBXBuildFile section */
@@ -23,6 +31,14 @@
 		12F7B7D51174FEC03EE88CCA /* Pods-SBMusicUtilities.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBMusicUtilities.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SBMusicUtilities/Pods-SBMusicUtilities.debug.xcconfig"; sourceTree = "<group>"; };
 		22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBRandomNoteGenerator.h; sourceTree = "<group>"; };
 		22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBRandomNoteGenerator.m; sourceTree = "<group>"; };
+		22444DB61CAAFB38002AFA3F /* SBPitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPitchEstimator.h; sourceTree = "<group>"; };
+		22444DB71CAAFB38002AFA3F /* SBPitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPitchEstimator.m; sourceTree = "<group>"; };
+		22444DBA1CAAFBCC002AFA3F /* SBMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBMath.h; sourceTree = "<group>"; };
+		22444DBB1CAAFBCC002AFA3F /* SBMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBMath.m; sourceTree = "<group>"; };
+		22444DBE1CAAFC13002AFA3F /* SBCircularFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCircularFloat.h; sourceTree = "<group>"; };
+		22444DBF1CAAFC13002AFA3F /* SBCircularFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCircularFloat.m; sourceTree = "<group>"; };
+		22444DC21CAAFC32002AFA3F /* SBCircular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCircular.h; sourceTree = "<group>"; };
+		22444DC31CAAFC32002AFA3F /* SBCircular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCircular.m; sourceTree = "<group>"; };
 		22FB657F1CA4C07600185053 /* SBMusicUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBMusicUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FB65821CA4C07600185053 /* SBMusicUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBMusicUtilities.h; sourceTree = "<group>"; };
 		22FB65841CA4C07600185053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,10 +88,18 @@
 				22FB65821CA4C07600185053 /* SBMusicUtilities.h */,
 				22FB658B1CA4FD0F00185053 /* SBAudioPlayer.h */,
 				22FB658C1CA4FD0F00185053 /* SBAudioPlayer.m */,
+				22444DC21CAAFC32002AFA3F /* SBCircular.h */,
+				22444DC31CAAFC32002AFA3F /* SBCircular.m */,
+				22444DBE1CAAFC13002AFA3F /* SBCircularFloat.h */,
+				22444DBF1CAAFC13002AFA3F /* SBCircularFloat.m */,
 				22FB65931CA4FD6900185053 /* SBNote.h */,
 				22FB65941CA4FD6900185053 /* SBNote.m */,
+				22444DBA1CAAFBCC002AFA3F /* SBMath.h */,
+				22444DBB1CAAFBCC002AFA3F /* SBMath.m */,
 				22FB658F1CA4FD2100185053 /* SBPlayableNote.h */,
 				22FB65901CA4FD2100185053 /* SBPlayableNote.m */,
+				22444DB61CAAFB38002AFA3F /* SBPitchEstimator.h */,
+				22444DB71CAAFB38002AFA3F /* SBPitchEstimator.m */,
 				22059F491CA50A690016E205 /* SBRandomNoteGenerator.h */,
 				22059F4A1CA50A690016E205 /* SBRandomNoteGenerator.m */,
 				22FB65841CA4C07600185053 /* Info.plist */,
@@ -107,11 +131,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22444DB81CAAFB38002AFA3F /* SBPitchEstimator.h in Headers */,
 				22059F4B1CA50A690016E205 /* SBRandomNoteGenerator.h in Headers */,
+				22444DC41CAAFC32002AFA3F /* SBCircular.h in Headers */,
+				22444DBC1CAAFBCC002AFA3F /* SBMath.h in Headers */,
 				22FB658D1CA4FD0F00185053 /* SBAudioPlayer.h in Headers */,
 				22FB65951CA4FD6900185053 /* SBNote.h in Headers */,
 				22FB65831CA4C07600185053 /* SBMusicUtilities.h in Headers */,
 				22FB65911CA4FD2100185053 /* SBPlayableNote.h in Headers */,
+				22444DC01CAAFC13002AFA3F /* SBCircularFloat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22444DC11CAAFC13002AFA3F /* SBCircularFloat.m in Sources */,
+				22444DC51CAAFC32002AFA3F /* SBCircular.m in Sources */,
 				22FB65921CA4FD2100185053 /* SBPlayableNote.m in Sources */,
+				22444DB91CAAFB38002AFA3F /* SBPitchEstimator.m in Sources */,
+				22444DBD1CAAFBCC002AFA3F /* SBMath.m in Sources */,
 				22FB658E1CA4FD0F00185053 /* SBAudioPlayer.m in Sources */,
 				22059F4C1CA50A690016E205 /* SBRandomNoteGenerator.m in Sources */,
 				22FB65961CA4FD6900185053 /* SBNote.m in Sources */,

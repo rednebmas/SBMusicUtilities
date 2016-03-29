@@ -16,6 +16,7 @@
 @property (nonatomic) float gain;
 @property (nonatomic) float **micBuffer;
 @property (nonatomic) BOOL micBufferFull;
+@property (readonly, nonatomic, retain) NSMutableArray *notes;
 
 + (SBAudioPlayer*) sharedInstance;
 - (void) play:(SBNote*)note;

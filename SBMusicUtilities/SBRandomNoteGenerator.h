@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class SBNote;
+#import <SBMusicUtilities/SBNote.h>
 
 @interface SBRandomNoteGenerator : NSObject
 
