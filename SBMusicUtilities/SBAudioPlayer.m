@@ -315,6 +315,31 @@
     return noErr;
 }
 
+#pragma mark - Change pitch of audio files
+
+- (double) percentCompressionFromFreq:(double)fromFreq toFreq:(double)toFreq
+{
+    return toFreq / fromFreq;
+}
+
+- (NSInteger) frameCountForCompression:(double)compression
+                    andRequestedFrames:(NSInteger)requestedFrames
+{
+    return (NSInteger)(compression * (double)requestedFrames);
+}
+
+- (double) valueForFrame:(NSInteger)frameIndex withData:(Float32*)data dataLength:(NSInteger)dataLength requestedFrames:(NSInteger)requestedFrames
+{
+    double exactPos = ((double)frameIndex / (double)requestedFrames) * (double)dataLength;
+    int left = floor(exactPos);
+    int right = ceil(exactPos);
+    double leftVal = data[left];
+    double rightVal = data[right];
+    double offset = exactPos - (double)left;
+    double value = leftVal + offset * (rightVal - leftVal);
+    return value;
+}
+
 #pragma mark - Misc
 
 // http://stackoverflow.com/a/3796721/337934
