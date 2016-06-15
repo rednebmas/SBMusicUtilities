@@ -297,8 +297,11 @@
         }
     }
     
-    [self.notes removeObjectsInArray:self.persistentDiscardNotes];
-    [self.persistentDiscardNotes removeAllObjects];
+    if (self.persistentDiscardNotes.count > 0)
+    {
+        [self.notes removeObjectsInArray:self.persistentDiscardNotes];
+        [self.persistentDiscardNotes removeAllObjects];
+    }
     
     if (self.notes.count == 0)
     {
