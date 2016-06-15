@@ -12,6 +12,8 @@
 
 @interface SBPlayableNote : SBNote
 
+@property (nonatomic, readwrite) double centsOff;
+@property (nonatomic, readonly) BOOL bufferInitialized;
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) int waitFrames;
 @property (nonatomic) double positionInSineWave;
@@ -22,5 +24,25 @@
 @property (nonatomic, retain) EZAudioFile *audioFile;
 
 - (void) loadAudioFile;
+- (void) initializeAudioBufferListWithChannelsPerFrame:(UInt32)channelsPerFrame
+                                           interleaved:(BOOL)interleaved
+                                         bytesPerFrame:(UInt32)bytesPerFrame
+                                        capacityFrames:(UInt32)capacityFrames;
+/*
+ * Reads new frames into audio buffer list.
+ * @returns true if End Of File (EOF, there are no frames left to read).
+ */
+- (BOOL) readIntoAudioBufferList:(AudioBufferList*)intoAudioBufferList
+               forNumberOfFrames:(UInt32)numberOfFrames;
+
+
+//
+// Class methods
+//
+
++ (AudioBufferList*) createAudioBufferListWithChannelsPerFrame:(UInt32)channelsPerFrame
+                                                   interleaved:(BOOL)interleaved
+                                                 bytesPerFrame:(UInt32)bytesPerFrame
+                                                capacityFrames:(UInt32)capacityFrames;
 
 @end

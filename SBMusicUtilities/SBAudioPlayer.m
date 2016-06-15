@@ -217,77 +217,77 @@
             UInt32 bufferSize; // amount of frames actually read
             BOOL eof; // end of file
             
-            if (self.notes.count > 0)
+            BOOL interleaved = [EZAudioUtilities isInterleaved:note.audioFile.clientFormat];
+            if (interleaved)
             {
-                BOOL interleaved = [EZAudioUtilities isInterleaved:note.audioFile.clientFormat];
-                if (interleaved)
-                {
-                    NSLog(@"WARNING: audio file client format is interleaved");
-                }
-                
-                // make sure we've allocated our temp bufferlist
-                if (self.tempBufferListAllocated == NO)
-                {
-                    UInt32 bytesPerFrame = note.audioFile.clientFormat.mBytesPerFrame;
-                    UInt32 channelsPerFrame = note.audioFile.clientFormat.mChannelsPerFrame;
-                    
-                    self.tempAudioBufferList = [self
-                                                createAudioBufferListWithChannelsPerFrame:channelsPerFrame
-                                                interleaved:interleaved
-                                                bytesPerFrame:bytesPerFrame
-                                                capacityFrames:frames];
-                }
-                
-                // for some reason if we don't do this we get an error, something to do with mp3
-                // maybe
-                SInt64 diff = note.audioFile.totalFrames - note.audioFile.frameIndex;
-                
-                if (diff != 0)
-                {
-                    // clear temp buffer first
-                    Float32 *tempBufferLeft = self.tempAudioBufferList->mBuffers[0].mData;
-                    Float32 *tempBufferRight = self.tempAudioBufferList->mBuffers[1].mData;
-                    vDSP_vclr(tempBufferLeft, 1, frames);
-                    vDSP_vclr(tempBufferRight, 1, frames);
-                    
-                    //
-                    // Read in to temporary buffer list
-                    //
-                    [note.audioFile readFrames:frames
-                               audioBufferList:self.tempAudioBufferList
-                                    bufferSize:&bufferSize
-                                           eof:&eof];
-                    
-                    //
-                    // Add to output buffer list
-                    //
-                    vDSP_vadd(bufferLeft, 1, tempBufferLeft, 1, bufferLeft, 1, frames);
-                    vDSP_vadd(bufferRight, 1, tempBufferRight, 1, bufferRight, 1, frames);
-                }
-                else
-                {
-                    eof = YES;
-                }
-                
-                // reset temporary bufferlist size
-                // http://stackoverflow.com/a/23579336/337934
-                AudioBuffer *buffer;
-                for(int j = 0; j < self.tempAudioBufferList->mNumberBuffers; j++ )
-                {
-                    buffer = &( self.tempAudioBufferList->mBuffers[ j ] );
-                    buffer->mDataByteSize = audioBufferList->mBuffers[0].mDataByteSize;
-                }
-            }
-            else
-            {
-                // just one audio file, we can save some processing and read it straight to
-                // the ouptut audio buffer list
-                [note.audioFile readFrames:frames
-                           audioBufferList:audioBufferList
-                                bufferSize:&bufferSize
-                                       eof:&eof];
+                NSLog(@"WARNING: audio file client format is interleaved");
             }
             
+            // make sure we've allocated our temp bufferlist
+            if (self.tempBufferListAllocated == NO)
+            {
+                UInt32 bytesPerFrame = note.audioFile.clientFormat.mBytesPerFrame;
+                UInt32 channelsPerFrame = note.audioFile.clientFormat.mChannelsPerFrame;
+                self.tempAudioBufferList = [SBPlayableNote
+                                            createAudioBufferListWithChannelsPerFrame:channelsPerFrame
+                                            interleaved:interleaved
+                                            bytesPerFrame:bytesPerFrame
+                                            capacityFrames:frames];
+            }
+            
+            if (note.bufferInitialized == NO)
+            {
+                UInt32 bytesPerFrame = note.audioFile.clientFormat.mBytesPerFrame;
+                UInt32 channelsPerFrame = note.audioFile.clientFormat.mChannelsPerFrame;
+                [note initializeAudioBufferListWithChannelsPerFrame:channelsPerFrame
+                                                        interleaved:interleaved
+                                                      bytesPerFrame:bytesPerFrame
+                                                     capacityFrames:frames];
+            }
+            
+            // for some reason if we don't do this we get an error, something to do with mp3
+            // maybe
+            SInt64 diff = note.audioFile.totalFrames - note.audioFile.frameIndex;
+            
+            // if (diff > 0)
+            {
+                // clear temp buffer first
+                Float32 *tempBufferLeft = self.tempAudioBufferList->mBuffers[0].mData;
+                Float32 *tempBufferRight = self.tempAudioBufferList->mBuffers[1].mData;
+                vDSP_vclr(tempBufferLeft, 1, frames);
+                vDSP_vclr(tempBufferRight, 1, frames);
+                
+                //
+                // Read in to temporary buffer list
+                //
+                /*
+                [note.audioFile readFrames:frames
+                           audioBufferList:self.tempAudioBufferList
+                                bufferSize:&bufferSize
+                                       eof:&eof];
+                 */
+                eof = [note readIntoAudioBufferList:self.tempAudioBufferList
+                            forNumberOfFrames:frames];
+                
+                //
+                // Add to output buffer list
+                //
+                vDSP_vadd(bufferLeft, 1, tempBufferLeft, 1, bufferLeft, 1, frames);
+                vDSP_vadd(bufferRight, 1, tempBufferRight, 1, bufferRight, 1, frames);
+            }
+            /* else
+            {
+                eof = YES;
+            } */
+            
+            // reset temporary bufferlist size
+            // http://stackoverflow.com/a/23579336/337934
+            AudioBuffer *buffer;
+            for(int j = 0; j < self.tempAudioBufferList->mNumberBuffers; j++)
+            {
+                buffer = &( self.tempAudioBufferList->mBuffers[ j ] );
+                buffer->mDataByteSize = audioBufferList->mBuffers[0].mDataByteSize;
+            }
             
             // remove note if we are done
             if (eof)
@@ -313,31 +313,6 @@
     }
     
     return noErr;
-}
-
-#pragma mark - Change pitch of audio files
-
-- (double) percentCompressionFromFreq:(double)fromFreq toFreq:(double)toFreq
-{
-    return toFreq / fromFreq;
-}
-
-- (NSInteger) frameCountForCompression:(double)compression
-                    andRequestedFrames:(NSInteger)requestedFrames
-{
-    return (NSInteger)(compression * (double)requestedFrames);
-}
-
-- (double) valueForFrame:(NSInteger)frameIndex withData:(Float32*)data dataLength:(NSInteger)dataLength requestedFrames:(NSInteger)requestedFrames
-{
-    double exactPos = ((double)frameIndex / (double)requestedFrames) * (double)dataLength;
-    int left = floor(exactPos);
-    int right = ceil(exactPos);
-    double leftVal = data[left];
-    double rightVal = data[right];
-    double offset = exactPos - (double)left;
-    double value = leftVal + offset * (rightVal - leftVal);
-    return value;
 }
 
 #pragma mark - Misc
