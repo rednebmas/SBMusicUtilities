@@ -128,7 +128,7 @@
     BOOL eof = NO; // end of file
     
     // if we are modifying pitch
-    if (self.centsOff != 0.0 && self.instrumentType != InstrumentTypeSineWave)
+    if (fabs(floor(self.centsOff)) != 0.0f && self.instrumentType != InstrumentTypeSineWave)
     {
         // read into our bufferlist
         [self.audioFile readFrames:self.audioBufferListLength
@@ -144,11 +144,11 @@
         
         for (NSInteger i = 0; i < numberOfFrames; i++)
         {
-            float leftChannel = [self valueForFrame:i
+            float leftChannel = [self CUBICvalueForFrame:i
                                             withData:myBufferLeft
                                           dataLength:self.audioBufferListLength
                                      requestedFrames:numberOfFrames];
-            float rightChannel = [self valueForFrame:i
+            float rightChannel = [self CUBICvalueForFrame:i
                                             withData:myBufferRight
                                           dataLength:self.audioBufferListLength
                                      requestedFrames:numberOfFrames];
@@ -190,8 +190,54 @@
     float leftVal = data[left];
     float rightVal = data[right];
     float offset = exactPos - (float)left;
-    float value = leftVal + offset * (rightVal - leftVal);
+    // float value = leftVal + offset * (rightVal - leftVal); LINEAR
+    float value = [self cosineInterpValueForLeftPoint:leftVal withRightPoint:rightVal andMu:offset];
     return value;
+}
+
+- (float) CUBICvalueForFrame:(NSInteger)frameIndex
+                withData:(Float32*)data
+              dataLength:(NSInteger)dataLength
+         requestedFrames:(NSInteger)requestedFrames
+{
+    double exactPosInOurData = ((double)frameIndex / (double)requestedFrames) * (double)dataLength;
+    if (exactPosInOurData < 1 || exactPosInOurData < (float)(dataLength - 1)) {
+        return [self valueForFrame:frameIndex withData:data dataLength:dataLength requestedFrames:requestedFrames];
+    }
+    
+    int left = floor(exactPosInOurData);
+    int right = ceil(exactPosInOurData);
+    float offset = exactPosInOurData - (float)left;
+    
+    float interpValue = CubicInterpolate(data[left-1], data[left], data[right], data[right+1], offset);
+    return interpValue;
+}
+
+float CubicInterpolate(
+                        float y0,float y1,
+                        float y2,float y3,
+                        float mu)
+{
+    float a0,a1,a2,a3,mu2;
+    
+    mu2 = mu*mu;
+    a0 = y3 - y2 - y0 + y1;
+    a1 = y0 - y1 - a0;
+    a2 = y2 - y0;
+    a3 = y1;
+    
+    return(a0*mu*mu2+a1*mu2+a2*mu+a3);
+}
+
+/*
+ * http://paulbourke.net/miscellaneous/interpolation/
+ */
+- (float) cosineInterpValueForLeftPoint:(float)left withRightPoint:(float)right andMu:(float)mu
+{
+    float mu2;
+    
+    mu2 = (1-cosf(mu*M_PI))/2;
+    return left*(1-mu2)+right*mu2;
 }
 
 
