@@ -46,6 +46,23 @@
     static id sharedInstance = nil;
     dispatch_once(&pred, ^{
         sharedInstance = [[self alloc] init];
+        
+        //
+        // Turns on output if mute switch is off
+        //
+        
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *error;
+        [session setCategory:AVAudioSessionCategoryPlayback error:&error];
+        if (error)
+        {
+            NSLog(@"Error setting up audio session category: %@", error.localizedDescription);
+        }
+        [session setActive:YES error:&error];
+        if (error)
+        {
+            NSLog(@"Error setting up audio session active: %@", error.localizedDescription);
+        }
     });
     return sharedInstance;
 }
