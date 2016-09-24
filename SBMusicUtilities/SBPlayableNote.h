@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSDate *toneStart;
 @property (nonatomic, retain) EZAudioFile *audioFile;
 
++ (void) setSamplesBaseFilePath:(NSString*)baseFilePath;
 - (void) loadAudioFile;
 - (void) initializeAudioBufferListWithChannelsPerFrame:(UInt32)channelsPerFrame
                                            interleaved:(BOOL)interleaved

@@ -295,6 +295,20 @@ static NSMutableDictionary *defaults;
     return _noteNames;
 }
 
++ (NSString*) instrumentNameForInstrumentType:(InstrumentType)instrumentType
+{
+    switch (instrumentType) {
+        case InstrumentTypePiano:
+            return @"Piano";
+            
+        case InstrumentTypeSineWave:
+            return @"Sine Wave";
+            
+        default:
+            return @"Unknown Instrument";
+    }
+}
+
 + (NSDictionary*) sharpToFlat
 {
     static NSDictionary *_sharpToFlat;

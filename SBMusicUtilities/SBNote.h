@@ -79,6 +79,7 @@ typedef NS_ENUM(NSInteger, InstrumentType) {
 
 // Musical math/constants
 + (NSArray*) noteNames;
++ (NSString*) instrumentNameForInstrumentType:(InstrumentType)instrumentType;
 + (NSString*) intervalTypeToDegree:(IntervalType)intervalType;
 + (NSString*) intervalTypeToIntervalName:(IntervalType)intervalType;
 + (NSArray*) ascendingIntervals;

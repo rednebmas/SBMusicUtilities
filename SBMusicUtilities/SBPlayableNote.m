@@ -11,6 +11,9 @@
 
 #define SAMPLE_RATE 44100.00
 
+static NSString *samplesBaseFilePath;
+static NSString *const sampleFileType = @"mp3";
+
 @interface SBPlayableNote()
 
 @property (nonatomic, readwrite) BOOL bufferInitialized;
@@ -46,10 +49,25 @@
 
 - (void) loadAudioFile
 {
-    NSString *filename = [NSString stringWithFormat:@"Piano.ff.%@", self.nameWithOctave];
-    NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:@"mp3"];
-    NSLog(@"%@", filename);
+    NSString *sampleName = [NSString stringWithFormat:@"Piano.ff.%@", self.nameWithOctave];
+    NSString *path;
+    if (samplesBaseFilePath == nil)
+    {
+        path = [[NSBundle mainBundle] pathForResource:sampleName ofType:sampleFileType];
+    }
+    else
+    {
+        NSString *filename = [NSString stringWithFormat:@"%@.%@", sampleName, sampleFileType];
+        path = [samplesBaseFilePath stringByAppendingPathComponent:filename];
+    }
+    
+    NSLog(@"%@", path);
     self.audioFile = [EZAudioFile audioFileWithURL:[NSURL fileURLWithPath:path]];
+}
+
++ (void) setSamplesBaseFilePath:(NSString*)baseFilePath;
+{
+    samplesBaseFilePath = baseFilePath;
 }
 
 - (void) setDuration:(double)duration
