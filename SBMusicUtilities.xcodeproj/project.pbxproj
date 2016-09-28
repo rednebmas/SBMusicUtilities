@@ -40,6 +40,7 @@
 		22444DBF1CAAFC13002AFA3F /* SBCircularFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCircularFloat.m; sourceTree = "<group>"; };
 		22444DC21CAAFC32002AFA3F /* SBCircular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCircular.h; sourceTree = "<group>"; };
 		22444DC31CAAFC32002AFA3F /* SBCircular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCircular.m; sourceTree = "<group>"; };
+		224518791D9C65D300B98371 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		226AC3A81D987895007CA381 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		226AC3AA1D9878B9007CA381 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22FB657F1CA4C07600185053 /* SBMusicUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBMusicUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +192,7 @@
 			knownRegions = (
 				en,
 				de,
+				"zh-Hans",
 			);
 			mainGroup = 22FB65751CA4C07600185053;
 			productRefGroup = 22FB65801CA4C07600185053 /* Products */;
@@ -270,6 +272,7 @@
 			children = (
 				226AC3A81D987895007CA381 /* en */,
 				226AC3AA1D9878B9007CA381 /* de */,
+				224518791D9C65D300B98371 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
