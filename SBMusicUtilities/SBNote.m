@@ -15,7 +15,12 @@
 #define HALF_STEPS_AWAY_FROM_A4_TO_NOTE_IN_4TH_OCTAVE @[@-9, @-8, @-7, @-6, @-5, @-4, @-3, @-2, @-1, @0, @1, @2]
 #define SAMPLE_RATE 44100.0f
 
+#define LocalizedString(key) \
+        [[SBNote bundle] localizedStringForKey:(key) value:@"" table:nil]
+
 static NSMutableDictionary *defaults;
+static NSBundle *bundle;
+
 
 @interface SBNote()
 
@@ -283,6 +288,20 @@ static NSMutableDictionary *defaults;
     return newNote;
 }
 
+#pragma mark - Misc class methods
+
++ (NSBundle*)bundle {
+    // get bundle so we can localize
+    if  (bundle == nil) {
+        NSString *ourBunldeName = @"SBMusicUtilities.bundle";
+        NSURL *frameworkURL = [[NSBundle bundleForClass:[SBNote class]] resourceURL];
+        NSURL *bundleURL = [frameworkURL URLByAppendingPathComponent:ourBunldeName];
+        bundle = [NSBundle bundleWithURL:bundleURL];
+    }
+    
+    return bundle;
+}
+
 #pragma mark - Notation class methods
 
 + (NSArray*) noteNames
@@ -333,19 +352,19 @@ static NSMutableDictionary *defaults;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _intervalTypeToName = @{
-                                @0  : @"Unison",
-                                @1  : @"Minor Second",
-                                @2  : @"Major Second",
-                                @3  : @"Minor Third",
-                                @4  : @"Major Third",
-                                @5  : @"Perfect Fourth",
-                                @6  : @"Tritone",
-                                @7  : @"Perfect Fifth",
-                                @8  : @"Minor Sixth",
-                                @9  : @"Major Sixth",
-                                @10 : @"Minor Seventh",
-                                @11 : @"Major Seventh",
-                                @12 : @"Octave",
+                                @0  : LocalizedString(@"Unison"),
+                                @1  : LocalizedString(@"Minor Second"),
+                                @2  : LocalizedString(@"Major Second"),
+                                @3  : LocalizedString(@"Minor Third"),
+                                @4  : LocalizedString(@"Major Third"),
+                                @5  : LocalizedString(@"Perfect Fourth"),
+                                @6  : LocalizedString(@"Tritone"),
+                                @7  : LocalizedString(@"Perfect Fifth"),
+                                @8  : LocalizedString(@"Minor Sixth"),
+                                @9  : LocalizedString(@"Major Sixth"),
+                                @10 : LocalizedString(@"Minor Seventh"),
+                                @11 : LocalizedString(@"Major Seventh"),
+                                @12 : LocalizedString(@"Octave")
                          };
     });
     return _intervalTypeToName;

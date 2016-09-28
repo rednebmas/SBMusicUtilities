@@ -54,8 +54,9 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "SBMusicUtilities", "SBMusicUtilities/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+	s.source_files  = "SBMusicUtilities", "SBMusicUtilities/*.{h,m}"
+	s.exclude_files = "Classes/Exclude"
+	s.resource_bundle = { 'SBMusicUtilities' => "SBMusicUtilities/*.{lproj,strings}" }
 
   # s.public_header_files = "Classes/**/*.h"
 

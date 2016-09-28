@@ -3,11 +3,14 @@ SBMusicUtilities
 
 This is a collection of classes that I use in apps that I'm working on. This library is dependent on the amazing audio library [EZAudio](https://github.com/syedhali/EZAudio) by Syed Haris Ali.
 
+# Localization
+
+I've begun to localize some the strings in the file (such as interval to name). In order for these to display in your app, your app must also have localization files. 
 
 # Classes
 
 ## SBNote
-Lots of math/music stuff.
+Math/music stuff
 
 - Calculate note name for frequency
 	- E.g. 133 hz to C3 + 29 cents
