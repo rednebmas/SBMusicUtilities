@@ -35,7 +35,6 @@ typedef NS_ENUM(NSInteger, IntervalType) {
     IntervalTypeOctaveAscending             = 12
 };
 
-
 typedef NS_ENUM(NSInteger, InstrumentType) {
     InstrumentTypeRandom,
     InstrumentTypeSineWaveDrone,
@@ -65,9 +64,9 @@ typedef NS_ENUM(NSInteger, InstrumentType) {
 - (id) initWithFrequency:(double)frequency;
 - (id) initWithName:(NSString*)name; // must include octave!
 - (SBNote*) noteWithDifferenceInHalfSteps:(int)difference;
-- (SBNote*) noteWithDifferenceInCents:(double)difference;
+- (SBNote*) noteWithDifferenceInCents:(double)difference adjustName:(BOOL)adjustName;
 - (BOOL)                   isNote:(SBNote*)note
-    isWithinPitchToleranceInCents:(double)pitchTolerance
+      withinPitchToleranceInCents:(double)pitchTolerance
                     compareOctave:(BOOL)compareOctave;
 
 //

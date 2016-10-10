@@ -43,11 +43,11 @@
     
     if (interval > 0)
     {
-        upperBound -= interval;
+        upperBound -= (int)interval;
     }
     else
     {
-        lowerBound = (int)ABS(interval);
+        lowerBound = abs((int)interval);
     }
     
     int rndValue;

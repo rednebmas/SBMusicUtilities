@@ -85,10 +85,12 @@
         return;
     }
     
-    SBPlayableNote *playableNote = [[SBPlayableNote alloc] initWithFrequency:note.frequency];
+    SBPlayableNote *playableNote = [[SBPlayableNote alloc] initWithName:note.nameWithOctave];
     playableNote.instrumentType = note.instrumentType;
     playableNote.duration = note.duration;
     playableNote.loudness = note.loudness;
+    playableNote.centsOff = note.centsOff;
+    playableNote.frequency = note.frequency;
     [self playablePlay:playableNote];
 }
 

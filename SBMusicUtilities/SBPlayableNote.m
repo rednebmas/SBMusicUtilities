@@ -90,9 +90,8 @@ static NSString *const sampleFileType = @"mp3";
     // We need to modify the size of the audio buffer list if we are modifying the pitch of the
     // sample
     self.audioBufferListLength = capacityFrames;
-    if (self.centsOff != 0.0 && self.instrumentType != InstrumentTypeSineWave)
+    if ([self isZero:self.centsOff threshold:.001] == NO && self.instrumentType != InstrumentTypeSineWave)
     {
-        if (self.centsOff != 0.0) NSLog(@"is zero? %.10f", self.centsOff);
         SBNote *inTuneNote = [SBNote noteWithName:self.nameWithOctave];
         double percentCompression = [self percentCompressionFromFreq:self.frequency
                                                               toFreq:inTuneNote.frequency];
@@ -107,7 +106,12 @@ static NSString *const sampleFileType = @"mp3";
                                                                       capacityFrames:self.audioBufferListLength];
 }
 
-/* 
+- (BOOL) isZero:(double)value threshold:(double)threshold
+{
+    return value >= -threshold && value <= threshold;
+}
+
+/*
  * http://stackoverflow.com/a/3796721/337934
  */
 + (AudioBufferList*) createAudioBufferListWithChannelsPerFrame:(UInt32)channelsPerFrame
@@ -162,11 +166,11 @@ static NSString *const sampleFileType = @"mp3";
         
         for (NSInteger i = 0; i < numberOfFrames; i++)
         {
-            float leftChannel = [self CUBICvalueForFrame:i
+            float leftChannel = [self valueForFrame:i
                                             withData:myBufferLeft
                                           dataLength:self.audioBufferListLength
                                      requestedFrames:numberOfFrames];
-            float rightChannel = [self CUBICvalueForFrame:i
+            float rightChannel = [self valueForFrame:i
                                             withData:myBufferRight
                                           dataLength:self.audioBufferListLength
                                      requestedFrames:numberOfFrames];

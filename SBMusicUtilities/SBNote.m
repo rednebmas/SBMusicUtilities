@@ -205,7 +205,7 @@ static NSBundle *bundle;
 }
 
 - (BOOL)                   isNote:(SBNote*)note
-    isWithinPitchToleranceInCents:(double)pitchTolerance
+      withinPitchToleranceInCents:(double)pitchTolerance
                     compareOctave:(BOOL)compareOctave
 {
     BOOL sameName = [note.nameWithoutOctave isEqualToString:self.nameWithoutOctave];
@@ -279,11 +279,20 @@ static NSBundle *bundle;
     return newNote;
 }
 
-- (SBNote*) noteWithDifferenceInCents:(double)difference
+- (SBNote*) noteWithDifferenceInCents:(double)difference adjustName:(BOOL)adjustName
 {
     double centsFromA4 = (double)self.halfStepsFromA4 * 100.0 + difference;
     double newFrequency = [SBNote frequencyForNoteFromA4InCents:centsFromA4];
-    SBNote *newNote = [[SBNote alloc] initWithFrequency:newFrequency];
+    
+    SBNote *newNote;
+    if (adjustName) {
+        newNote = [[SBNote alloc] initWithFrequency:newFrequency];
+    } else {
+        // why? we want to use the sample for the note with this name
+        newNote = [[SBNote alloc] initWithFrequency:self.frequency];
+        newNote.frequency = newFrequency;
+        newNote.centsOff = newNote.centsOff + difference;
+    }
     
     return newNote;
 }
@@ -535,7 +544,6 @@ static NSBundle *bundle;
     int intervalTypeInt = abs((int)intervalType);
     return [[SBNote intervalTypeToIntervalShorthand] objectForKey:[NSNumber numberWithInt:intervalTypeInt]];
 }
-
 
 /**
  * Someday may just want to cache these results
