@@ -43,12 +43,15 @@ typedef NS_ENUM(NSInteger, InstrumentType) {
 };
 
 @interface SBNote : NSObject
+{
+    @protected
+    double _frequency;
+}
 
 // readonly
 @property (nonatomic, readonly) int halfStepsFromA4;
 @property (nonatomic, readonly) int octave;
 @property (nonatomic, readonly) double frequency;
-@property (nonatomic, readonly) double centsOff;
 @property (nonatomic, retain, readonly) NSString *nameWithOctave;
 @property (nonatomic, retain, readonly) NSString *nameWithoutOctave;
 @property (nonatomic, retain, readonly) SBNote *transposed;
@@ -56,6 +59,8 @@ typedef NS_ENUM(NSInteger, InstrumentType) {
 @property (nonatomic) int transpose; // half steps to transpose
 @property (nonatomic) double duration;
 @property (nonatomic) double loudness;
+// changing this will change the frequency, but not the note name
+@property (nonatomic) double centsOff;
 @property (nonatomic) InstrumentType instrumentType;
 @property (nonatomic, retain) NSString *title;
 

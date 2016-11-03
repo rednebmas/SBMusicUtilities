@@ -27,7 +27,6 @@ static NSBundle *bundle;
 @property (nonatomic, readwrite) int halfStepsFromA4;
 @property (nonatomic, readwrite) int octave;
 @property (nonatomic, readwrite) double frequency;
-@property (nonatomic, readwrite) double centsOff;
 @property (nonatomic, retain, readwrite) NSString *nameWithOctave;
 @property (nonatomic, retain, readwrite) NSString *nameWithoutOctave;
 @property (nonatomic, retain, readwrite) SBNote *transposed;
@@ -66,7 +65,7 @@ static NSBundle *bundle;
     self = [self init];
     if (self)
     {
-        self.frequency = frequency;
+        _frequency = frequency;
         [self frequencyToNote:frequency];
     }
     return self;
@@ -201,7 +200,7 @@ static NSBundle *bundle;
 
     self.halfStepsFromA4 = [SBNote halfStepsFromA4FromNameWithoutOctave:self.nameWithoutOctave
                                                               andOctave:octave];
-    self.frequency = [SBNote frequencyForNoteWithHalfStepsFromA4:self.halfStepsFromA4];
+    _frequency = [SBNote frequencyForNoteWithHalfStepsFromA4:self.halfStepsFromA4];
 }
 
 - (BOOL)                   isNote:(SBNote*)note
@@ -256,6 +255,13 @@ static NSBundle *bundle;
     
     double transposeFrequency = [SBNote frequencyForNoteWithHalfStepsFromA4:self.halfStepsFromA4 + transpose];
     self.transposed = [[SBNote alloc] initWithFrequency:transposeFrequency];
+}
+
+- (void)setCentsOff:(double)difference
+{
+    double centsFromA4 = (double)self.halfStepsFromA4 * 100.0 + difference;
+    double newFrequency = [SBNote frequencyForNoteFromA4InCents:centsFromA4];
+    self.frequency = newFrequency;
 }
 
 #pragma mark - Misc

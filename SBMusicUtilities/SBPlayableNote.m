@@ -31,9 +31,19 @@ static NSString *const sampleFileType = @"mp3";
     self = [super initWithFrequency:frequency];
     if (self)
     {
-        self.thetaIncrement = 2.0 * M_PI * self.frequency / SAMPLE_RATE;
-        [self setDuration:self.duration];
+        _thetaIncrement = 2.0 * M_PI * self.frequency / SAMPLE_RATE;
     }
+    return self;
+}
+
+- (id) initWithName:(NSString *)name
+{
+    self = [super initWithName:name];
+    if (self)
+    {
+        _thetaIncrement = 2.0 * M_PI * self.frequency / SAMPLE_RATE;
+    }
+    
     return self;
 }
 
@@ -43,6 +53,14 @@ static NSString *const sampleFileType = @"mp3";
     {
         free(self.audioBufferList);
     }
+}
+
+#pragma mark - Properties
+
+- (void)setFrequency:(double)frequency
+{
+    _frequency = frequency;
+    self.thetaIncrement = 2.0 * M_PI * self.frequency / SAMPLE_RATE;
 }
 
 #pragma mark - Misc...

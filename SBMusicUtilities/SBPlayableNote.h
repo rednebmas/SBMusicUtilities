@@ -12,7 +12,6 @@
 
 @interface SBPlayableNote : SBNote
 
-@property (nonatomic, readwrite) double centsOff;
 @property (nonatomic, readwrite) double frequency;
 @property (nonatomic, readonly) BOOL bufferInitialized;
 @property (nonatomic) BOOL isPlaying;
