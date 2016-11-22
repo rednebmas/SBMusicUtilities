@@ -50,11 +50,11 @@ static NSBundle *bundle;
         if (instrumentType == InstrumentTypeRandom)
         {
             // includes SineWaveDrone
-            self.instrumentType = 1 + arc4random() % 3;
+            _instrumentType = 1 + arc4random() % 3;
         }
         else
         {
-            self.instrumentType = instrumentType;
+            _instrumentType = instrumentType;
         }
     }
     return self;
@@ -147,16 +147,16 @@ static NSBundle *bundle;
     
     NSArray *noteNames = [SBNote noteNames];
     
-    self.centsOff = centDiff - noteDiff * 100;
+    _centsOff = centDiff - noteDiff * 100;
     double noteNumber = noteDiff + 9 + 12 * 4;
-    self.octave = (int)floor((noteNumber)/12);
+    _octave = (int)floor((noteNumber)/12);
     int place = (int)fmod(noteNumber, 12) + 1;
     
-    self.nameWithOctave = [NSString stringWithFormat:@"%@%d", noteNames[place - 1], self.octave];
-    self.nameWithoutOctave = [NSString stringWithFormat:@"%@", noteNames[place - 1]];
+    _nameWithOctave = [NSString stringWithFormat:@"%@%d", noteNames[place - 1], _octave];
+    _nameWithoutOctave = [NSString stringWithFormat:@"%@", noteNames[place - 1]];
     
-    self.halfStepsFromA4 = [SBNote halfStepsFromA4FromNameWithoutOctave:self.nameWithoutOctave
-                                                              andOctave:self.octave];
+    _halfStepsFromA4 = [SBNote halfStepsFromA4FromNameWithoutOctave:_nameWithoutOctave
+                                                              andOctave:_octave];
 }
 
 /**
@@ -257,10 +257,11 @@ static NSBundle *bundle;
     self.transposed = [[SBNote alloc] initWithFrequency:transposeFrequency];
 }
 
-- (void)setCentsOff:(double)difference
+- (void)setCentsOff:(double)centsOff
 {
-    double centsFromA4 = (double)self.halfStepsFromA4 * 100.0 + difference;
+    double centsFromA4 = (double)self.halfStepsFromA4 * 100.0 + centsOff;
     double newFrequency = [SBNote frequencyForNoteFromA4InCents:centsFromA4];
+    _centsOff = centsOff;
     self.frequency = newFrequency;
 }
 
@@ -296,7 +297,6 @@ static NSBundle *bundle;
     } else {
         // why? we want to use the sample for the note with this name
         newNote = [[SBNote alloc] initWithFrequency:self.frequency];
-        newNote.frequency = newFrequency;
         newNote.centsOff = newNote.centsOff + difference;
     }
     

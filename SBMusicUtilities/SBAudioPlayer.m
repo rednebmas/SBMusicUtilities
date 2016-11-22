@@ -324,7 +324,7 @@
     
     if (self.notes.count == 0)
     {
-        // [self stop];
+         // [self stop];
     }
     
     // apply gain
