@@ -286,6 +286,11 @@ static NSBundle *bundle;
     return newNote;
 }
 
+- (SBNote*) noteWithDifferenceInCents:(double)difference
+{
+    return [self noteWithDifferenceInCents:difference adjustName:YES];
+}
+
 - (SBNote*) noteWithDifferenceInCents:(double)difference adjustName:(BOOL)adjustName
 {
     double centsFromA4 = (double)self.halfStepsFromA4 * 100.0 + difference;

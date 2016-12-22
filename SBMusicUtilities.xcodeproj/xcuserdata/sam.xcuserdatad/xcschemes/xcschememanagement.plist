@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SBMusicUtilitiesTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>225C18181DE538630006E773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>22FB657E1CA4C07600185053</key>
 		<dict>
 			<key>primary</key>

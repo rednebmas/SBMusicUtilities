@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SBMusicUtilitiesTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TPCircularBuffer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -23,6 +28,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>4547FD42E303C73D12CCC45748CC491D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>778E9BE59601A4CEBF477283CCBD5E72</key>
 		<dict>
 			<key>primary</key>
 			<true/>

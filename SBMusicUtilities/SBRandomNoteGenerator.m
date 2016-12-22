@@ -37,6 +37,9 @@
 - (SBNote*) nextNoteWithinRangeForInterval:(IntervalType)interval
 {
     int range = self.toNote.halfStepsFromA4 - self.fromNote.halfStepsFromA4;
+    if (range < interval) {
+        NSLog(@"<<WARNING>> in nextNoteWithinRangeForInterval: interval was greater than range");
+    }
     
     int lowerBound = 0;
     int upperBound = range;

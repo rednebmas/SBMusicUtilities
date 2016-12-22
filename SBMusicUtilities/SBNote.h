@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, InstrumentType) {
 - (id) initWithFrequency:(double)frequency;
 - (id) initWithName:(NSString*)name; // must include octave!
 - (SBNote*) noteWithDifferenceInHalfSteps:(int)difference;
+- (SBNote*) noteWithDifferenceInCents:(double)difference; // defaults to YES for adjust name
 - (SBNote*) noteWithDifferenceInCents:(double)difference adjustName:(BOOL)adjustName;
 - (BOOL)                   isNote:(SBNote*)note
       withinPitchToleranceInCents:(double)pitchTolerance

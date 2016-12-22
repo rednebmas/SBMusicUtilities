@@ -3,7 +3,15 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
-target 'SBMusicUtilities' do
+def the_pods
 	pod 'EZAudio', :git => 'https://github.com/rednebmas/EZAudio.git'
+end
+
+target 'SBMusicUtilities' do
+	the_pods
+end
+
+target 'SBMusicUtilitiesTests' do
+	the_pods
 end
 
