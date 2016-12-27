@@ -36,9 +36,9 @@ typedef NS_ENUM(NSInteger, IntervalType) {
 };
 
 typedef NS_ENUM(NSInteger, InstrumentType) {
+    InstrumentTypeSineWave,
     InstrumentTypeRandom,
     InstrumentTypeSineWaveDrone,
-    InstrumentTypeSineWave,
     InstrumentTypePiano
 };
 

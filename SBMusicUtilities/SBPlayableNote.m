@@ -167,6 +167,9 @@ static NSString *const sampleFileType = @"mp3";
     UInt32 bufferSize; // amount of frames actually read
     BOOL eof = NO; // end of file
     
+    Float32 *intoBufferLeft = intoAudioBufferList->mBuffers[0].mData;
+    Float32 *intoBufferRight = intoAudioBufferList->mBuffers[1].mData;
+    
     // if we are modifying pitch
     if (fabs(floor(self.centsOff)) != 0.0f && self.instrumentType != InstrumentTypeSineWave)
     {
@@ -179,8 +182,6 @@ static NSString *const sampleFileType = @"mp3";
         // then interpolate into the passed in audio buffer list
         Float32 *myBufferLeft = self.audioBufferList->mBuffers[0].mData;
         Float32 *myBufferRight = self.audioBufferList->mBuffers[1].mData;
-        Float32 *intoBufferLeft = intoAudioBufferList->mBuffers[0].mData;
-        Float32 *intoBufferRight = intoAudioBufferList->mBuffers[1].mData;
         
         for (NSInteger i = 0; i < numberOfFrames; i++)
         {
@@ -203,6 +204,30 @@ static NSString *const sampleFileType = @"mp3";
                    audioBufferList:intoAudioBufferList
                         bufferSize:&bufferSize
                                eof:&eof];
+    }
+    
+    /////////////
+    // Fade out
+    ////////////
+    
+    int fadeOutFrames = .05 * 44100; // .05 seconds
+    if (self.durationInFramesLeft - bufferSize <= fadeOutFrames)
+    {
+        for (int i = 0; i < bufferSize && self.durationInFramesLeft > 0; i++) {
+            ///////// frames left             ///  total frames
+            Float32 multiplier = MIN((Float32)1.0, (Float32)self.durationInFramesLeft / (Float32)fadeOutFrames);
+            intoBufferLeft[i] *= multiplier;
+            intoBufferRight[i] *= multiplier;
+            self.durationInFramesLeft--;
+        }
+        
+        if (self.durationInFramesLeft <= 0) {
+            eof = YES;
+        }
+    }
+    else
+    {
+        self.durationInFramesLeft -= numberOfFrames;
     }
     
     return eof;
