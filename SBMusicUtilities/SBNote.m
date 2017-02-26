@@ -269,12 +269,13 @@ static NSBundle *bundle;
 
 - (NSString*) description
 {
-    return [NSString stringWithFormat:@"%@ - %f Hz (%@%f cents), %.2fs",
+    return [NSString stringWithFormat:@"%@ - %f Hz (%@%f cents), %.2fs, %@",
             self.nameWithOctave,
             self.frequency,
             self.centsOff < 0 ? @"" : @"+",
             self.centsOff,
-            self.duration];
+            self.duration,
+            [SBNote instrumentNameForInstrumentType:self.instrumentType]];
 }
 
 - (SBNote*) noteWithDifferenceInHalfSteps:(int)difference

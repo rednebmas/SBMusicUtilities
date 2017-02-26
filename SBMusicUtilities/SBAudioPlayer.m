@@ -196,7 +196,7 @@
         {
             for (int frame = 0; frame < frames; frame++)
             {
-                if (note.durationInFramesLeft == 0)
+                if (note.durationInFramesLeft <= 0)
                 {
                     continue;
                 }
