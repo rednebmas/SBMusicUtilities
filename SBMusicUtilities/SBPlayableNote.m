@@ -65,7 +65,7 @@ static NSString *const sampleFileType = @"mp3";
 
 #pragma mark - Misc...
 
-- (void) loadAudioFile
+- (NSString*)samplePath
 {
     NSString *sampleName = [NSString stringWithFormat:@"Piano.ff.%@", self.nameWithOctave];
     NSString *path;
@@ -78,9 +78,21 @@ static NSString *const sampleFileType = @"mp3";
         NSString *filename = [NSString stringWithFormat:@"%@.%@", sampleName, sampleFileType];
         path = [samplesBaseFilePath stringByAppendingPathComponent:filename];
     }
-    
+    return path;
+}
+
+- (void) loadAudioFile
+{
+    NSString *path = [self samplePath];
     NSLog(@"%@", path);
     self.audioFile = [EZAudioFile audioFileWithURL:[NSURL fileURLWithPath:path]];
+}
+
+- (BOOL) sampleExists
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *path = [self samplePath];
+    return [fileManager fileExistsAtPath:path];
 }
 
 + (void) setSamplesBaseFilePath:(NSString*)baseFilePath;
